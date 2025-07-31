@@ -4,6 +4,7 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV, RandomizedSearchCV
 import optuna.visualization as vis
 import numpy as np
+import plotly.io as pio
 
 # Load Dataset
 data = load_iris()
@@ -83,5 +84,5 @@ print(f"Grid Search Accuracy: {grid_acc:.4f}")
 print(f"Random Search Accuracy: {random_acc:.4f}")
 
 # ---- VISUALIZATION ----
-vis.plot_optimization_history(study).show()
-vis.plot_param_importances(study).show()
+pio.write_image(vis.plot_optimization_history(study), "optuna_optimization_history.png")
+pio.write_image(vis.plot_param_importances(study), "optuna_param_importance.png")
